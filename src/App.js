@@ -6,18 +6,21 @@ import Shoppage from "./pages/shoppage.jsx";
 import Checkout from "./pages/checkout.jsx";
 import Header from "./components/header.jsx";
 import { Siginout } from "./pages/signinout";
-import { auth,registerUser } from "./firebase/firebase.config.js";
+
 import { connect } from "react-redux";
-import { setCurrentUser } from "./redux/user.reducer/user-action.js";
+import { checkCurrentUser } from "./redux/user.reducer/user-action";
 import { selectCurrentUser } from "./redux/user.reducer/user.selectors";
+
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setUser } = this.props;
+  
+    const {checkCurrentUser} = this.props;
 
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+    checkCurrentUser();
+    /*this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await registerUser(userAuth);
 
@@ -30,7 +33,8 @@ class App extends React.Component {
       }
 
       setUser(userAuth);
-    });
+    });*/
+  
   }
 
   componentWillUnmount() {
@@ -55,15 +59,13 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) =>({  
-  currentUser : selectCurrentUser(state)
+  currentUser : selectCurrentUser(state),
+ 
 })
 
-
-const dispatchToProps = (dispatch) =>({
-  setUser :(user)=>(
-    dispatch(setCurrentUser(user))
-  )
-});
+const dispatchToProps = dispatch =>({
+  checkCurrentUser : ()=>(dispatch(checkCurrentUser()))
+})
 
 export default connect(mapStateToProps,dispatchToProps)(App);
 

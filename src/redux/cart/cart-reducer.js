@@ -29,7 +29,10 @@ const cartReducer = (state  = INITIAL_STATE,action) =>{
             ...state,
             collection : removeItemFromCart(state.collection,action.payload)
         }
-          
+        case 'SIGN_OUT_CLEAR_CART' : return{
+            ...state,
+            collection : []
+        }  
     
         default: return state
             

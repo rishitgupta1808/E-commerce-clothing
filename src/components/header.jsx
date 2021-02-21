@@ -5,44 +5,48 @@ import {ReactComponent as Logo} from '../assets/diamond.svg'
 import './header.css';
 import { connect } from "react-redux";
 
-import { auth } from "../firebase/firebase.config.js";
 
 import { Link } from "react-router-dom";
 import { selecthidden } from "../redux/cart/cart-selectors";
 import { selectCurrentUser } from "../redux/user.reducer/user.selectors";
+import { signOutStart } from "../redux/user.reducer/user-action";
 import  ShopCart  from "./shoppinbag.jsx";
 import  CartDropDown  from "./cart-dropdown";
+import { HeaderContainer,OptionsContainer,OptionLink,LogoContainer,NameContainer,OptionDiv } from "./header.styles";
 
-const Header = ({ currentUser,hidden}) => (
-    <div className='header'>
-      <Link className='logo-container' to='/'>
+const Header = ({ currentUser,hidden,signOut}) => {
+
+  return(
+    <HeaderContainer>
+      <LogoContainer to='/'>
         <Logo className='logo' />
-     </Link>
+     </LogoContainer>
       {currentUser ? (
-          <div className="name">{currentUser.displayName}</div>
+          <NameContainer>{currentUser.displayName}</NameContainer>
 
         ) :<div></div>}
       
-      <div className='options'>
-        <Link className='option' to='/shop'>
+      <OptionsContainer>
+        <OptionLink to='/shop'>
           SHOP
-        </Link>
-        <Link className='option' to='/shop'>
+        </OptionLink>
+        <OptionLink to='/shop'>
           CONTACT
-        </Link>
+        </OptionLink>
         {currentUser ? (
-          <div className='option' onClick={() => auth.signOut()}>
-            SIGN OUT</div>
+          <OptionDiv onClick={() =>signOut()}>
+            SIGN OUT</OptionDiv>
         ) : (
           <Link className='option' to='/signin'>
             SIGN IN
           </Link>
         )}
         <ShopCart/>
-      </div>
+        </OptionsContainer>
       { hidden? null: <CartDropDown/>}
-    </div>
-  );
+    </HeaderContainer>
+  )
+        }
 
   const mapStateToProps = (state) =>({
 
@@ -50,4 +54,8 @@ const Header = ({ currentUser,hidden}) => (
     hidden : selecthidden(state)
   });
   
-  export default connect(mapStateToProps)(Header);
+  const dispatchToProps = dispatch =>({
+    signOut : ()=>dispatch(signOutStart())
+  })
+  
+  export default connect(mapStateToProps,dispatchToProps)(Header);

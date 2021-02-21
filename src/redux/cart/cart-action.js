@@ -18,3 +18,7 @@ export const removeItem = (item) =>({
     type : "REMOVE_ITEM",
     payload : item
 })
+
+export const signOutClearCart = () =>({
+    type : 'SIGN_OUT_CLEAR_CART'
+})

@@ -33,10 +33,9 @@ class SignUp extends React.Component {
           email,
           password
         );
-        console.log(user);
-  
+        console.log(displayName);
         await registerUser(user, {displayName});
-  
+        
         this.setState({
           displayName: '',
           email: '',
