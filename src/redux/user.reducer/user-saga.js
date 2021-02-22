@@ -9,7 +9,7 @@ import { signOutError,signOutSuccess, signInError,signInSuccess} from "./user-ac
 
 function* googleSignInAsync(){
   try{
-    let {user} = yield auth.signInWithRedirect(Googleprovider);
+    let {user} = yield auth.signInWithPopup(Googleprovider);
     let userRef = yield call(registerUser,user);
     const userSnapshot = yield userRef.get();
    
