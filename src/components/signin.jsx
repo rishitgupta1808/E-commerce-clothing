@@ -37,7 +37,7 @@ const Sigin = ({startEmailSignIn,startGoogleSignIn})=>{
              <FormInput type="password" id="password" label="Password" name="password" onChange={handleChange}  value={password}  />
              <div className="button">
         <CustomButton type="submit">Sign In</CustomButton>
-        <CustomButton type="button" onClick={()=>startGoogleSignIn()} isGoogleSignin>Sign In with Google</CustomButton>
+        <CustomButton type="button" onClick={()=>startGoogleSignIn()} isGoogleSignin>Sign In with Goo</CustomButton>
         </div>
         </form>
 
