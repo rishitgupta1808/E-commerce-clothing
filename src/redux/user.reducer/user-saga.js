@@ -1,10 +1,10 @@
-import { takeLatest,call,all,put,select } from "redux-saga/effects";
+import { takeLatest,call,all,put } from "redux-saga/effects";
 
-import { auth,Googleprovider,registerUser,getCurrentUser, firestore } from "../../firebase/firebase.config";
+import { auth,Googleprovider,registerUser,getCurrentUser } from "../../firebase/firebase.config";
 
 import { signOutError,signOutSuccess, signInError,signInSuccess} from "./user-action";
 
-import { selectCartCollection } from "../cart/cart-selectors";
+
 
 
 function* googleSignInAsync(){

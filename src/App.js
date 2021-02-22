@@ -13,14 +13,17 @@ import { selectCurrentUser } from "./redux/user.reducer/user.selectors";
 
 
 class App extends React.Component {
-  unsubscribeFromAuth = null;
+  
 
   componentDidMount() {
   
     const {checkCurrentUser} = this.props;
 
     checkCurrentUser();
-    /*this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+
+  }
+
+      /*this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef = await registerUser(userAuth);
 
@@ -35,11 +38,6 @@ class App extends React.Component {
       setUser(userAuth);
     });*/
   
-  }
-
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
 
 
   render(){
