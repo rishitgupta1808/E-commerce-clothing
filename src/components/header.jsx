@@ -12,7 +12,7 @@ import { selectCurrentUser } from "../redux/user.reducer/user.selectors";
 import { signOutStart } from "../redux/user.reducer/user-action";
 import  ShopCart  from "./shoppinbag.jsx";
 import  CartDropDown  from "./cart-dropdown";
-import { HeaderContainer,OptionsContainer,OptionLink,LogoContainer,NameContainer,OptionDiv } from "./header.styles";
+import { HeaderContainer,OptionsContainer,OptionLink,LogoContainer,OptionDiv } from "./header.styles";
 
 const Header = ({ currentUser,hidden,signOut}) => {
 
@@ -21,10 +21,7 @@ const Header = ({ currentUser,hidden,signOut}) => {
       <LogoContainer to='/'>
         <Logo className='logo' />
      </LogoContainer>
-      {currentUser ? (
-          <NameContainer>{currentUser.displayName}</NameContainer>
-
-        ) :<div></div>}
+     
       
       <OptionsContainer>
         <OptionLink to='/shop'>
@@ -35,7 +32,7 @@ const Header = ({ currentUser,hidden,signOut}) => {
         </OptionLink>
         {currentUser ? (
           <OptionDiv onClick={() =>signOut()}>
-            SIGN OUT</OptionDiv>
+            SIGNOUT</OptionDiv>
         ) : (
           <Link className='option' to='/signin'>
             SIGN IN

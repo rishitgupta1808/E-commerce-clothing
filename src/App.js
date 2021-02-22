@@ -1,4 +1,4 @@
-import './App.css';
+
 import React from "react";
 import Homepage  from "./pages/homepage.jsx";
 import {Route,Switch,Redirect} from 'react-router-dom';
@@ -6,6 +6,7 @@ import Shoppage from "./pages/shoppage.jsx";
 import Checkout from "./pages/checkout.jsx";
 import Header from "./components/header.jsx";
 import { Siginout } from "./pages/signinout";
+import { GlobalStyle  } from "./global.styles";
 
 import { connect } from "react-redux";
 import { checkCurrentUser } from "./redux/user.reducer/user-action";
@@ -43,6 +44,7 @@ class App extends React.Component {
   render(){
   return (
     <div>
+      <GlobalStyle/>
     <Header  />
     <Switch>
     <Route exact path='/' component = {Homepage }/>
@@ -50,6 +52,7 @@ class App extends React.Component {
     <Route exact path='/signin/' render={()=>this.props.currentUser?<Redirect to='/'/>:<Siginout/>}/>
     <Route exact path='/checkout/' component={Checkout}/>
     </Switch>
+    
     </div>
 
   );

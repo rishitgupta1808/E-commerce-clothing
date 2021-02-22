@@ -1,6 +1,6 @@
 import React from "react";
 
-import './signup.css'
+import './signup.scss'
 
 import { auth,registerUser } from "../firebase/firebase.config.js";
 import { FormInput } from "./forminput";
